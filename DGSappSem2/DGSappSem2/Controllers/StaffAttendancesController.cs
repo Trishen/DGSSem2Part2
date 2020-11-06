@@ -37,31 +37,28 @@ namespace DGSappSem2.Controllers
         }
 
         // GET: StaffAttendances/Create
+        
         public ActionResult Create()
         {
-            var response = new StaffAttendance
-            {
-                StaffCollection = db.Staffs.Select(x => x.Name).ToList()
-            };
-
-            return View(response);
+            
+            return View();
+           
         }
 
         // POST: StaffAttendances/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StaffAttendanceId,StaffAttName,Staffrecord,GetDate")] StaffAttendance staffAttendance)
+        
+        public ActionResult Create(StaffAttendance staffAttendance)
         {
-            if (ModelState.IsValid)
+            if (staffAttendance.StaffAttName == null)
             {
-                db.StaffAttendances.Add(staffAttendance);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                staffAttendance.StaffAttName = "null";
             }
-
-            return View(staffAttendance);
+            db.StaffAttendances.Add(staffAttendance);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: StaffAttendances/Edit/5

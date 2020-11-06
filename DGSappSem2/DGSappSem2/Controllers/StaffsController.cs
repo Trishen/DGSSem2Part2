@@ -30,7 +30,13 @@ namespace DGSappSem2.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Details()
+        {
+            return View();
+        }
         // GET: Staffs/Details/5
+        [HttpPost]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,7 +48,6 @@ namespace DGSappSem2.Controllers
             {
                 return HttpNotFound();
             }
-
             string qr = staff.Name;
             ViewBag.Name = staff.Name;
             //ViewBag.Sub = staff.SubId.ToString();
@@ -65,7 +70,8 @@ namespace DGSappSem2.Controllers
 
             }
 
-            return View(staff);
+            return View();
+
         }
 
         // GET: Staffs/Create

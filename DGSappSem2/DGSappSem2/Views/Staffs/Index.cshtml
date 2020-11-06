@@ -11,7 +11,7 @@
 </p>*@
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add new staff member", "Create")
 </p>
 <table class="table">
     <tr>
@@ -83,7 +83,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.StaffId }) |
-                @Html.ActionLink("Scan QR Code", "Details", new { id = item.StaffId }) |
+                @Html.ActionLink("Create QR Code", "Details", new { id = item.StaffId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.StaffId })
             </td>
         </tr>

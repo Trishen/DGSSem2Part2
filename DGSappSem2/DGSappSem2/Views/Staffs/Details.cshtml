@@ -8,13 +8,15 @@
     Layout = null;
 }
 
-
 <!DOCTYPE html>
 
 <html>
 
 <head>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
 
     <style>
         .center {
@@ -31,7 +33,7 @@
             text-align: center;
             font-family: arial;
         }
-        /*
+
         .title {
             color: grey;
             font-size: 18px;
@@ -48,7 +50,7 @@
             cursor: pointer;
             width: 100%;
             font-size: 18px;
-        }*/
+        }
 
         a {
             text-decoration: none;
@@ -76,7 +78,7 @@
     <h2 style="text-align:center">Create user QR Card</h2>
     <div class="w3-container w3-center">
         <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
-        @*<p><label for="file" style="cursor: pointer;">Upload Image</label></p>*@
+        <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
     </div>
     <div class="card">
         <img id="output" style="width:100%">
@@ -87,13 +89,18 @@
         @using (Html.BeginForm("Details", "Staffs", FormMethod.Post))
 
         {
+
+
+
+
+
             <div class="col-md-3">
 
                 <img src="@ViewBag.Url" width="80px" height="80px" alt="Image" />
 
             </div>
             <p><button>@ViewBag.Con</button></p>
-                @*<input type="submit" id="btnGenerate" value="Generate" class="btn btn-default" />*@
+            <input type="submit" id="btnGenerate" value="Generate" class="btn btn-default" />
 
         }
 
@@ -104,4 +111,4 @@
 </body>
 
 </html>
-<div class="w3-container w3-center"> @Html.ActionLink("Retrun to records", "Index")</div>
+<div> @Html.ActionLink("Retrun to records", "Index")</div>
