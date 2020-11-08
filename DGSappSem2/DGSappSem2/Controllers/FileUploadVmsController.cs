@@ -1,195 +1,159 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using DGSappSem2.Models;
 using DGSappSem2.Models.FileUpload;
-using System.IO;
-using System.Data;
-using System.Data.SqlClient;
-using System.Threading;
-using Microsoft.Win32;
-using System.Threading.Tasks;
-using System.Net;
 
 namespace DGSappSem2.Controllers
 {
     public class FileUploadVmsController : Controller
     {
-      
-        public int count = 1;
-        System.Guid guid = System.Guid.NewGuid();
-
-        // GET: Files  
-        public ActionResult Index(FileUploadVm model)
+        public ActionResult Index()
         {
-            var dtFiles = GetFileDetails();
-
-            List<FileUploadVm> list = new List<FileUploadVm>();
-            foreach (var item in dtFiles)
-            {
-                list.Add(new FileUploadVm
-                {
-                    //FileId = item.FileId,
-                    FileId = (count++).ToString(),
-                    FileName = item.FileName,
-                    FileUrl = item.FileUrl
-                });
-            }
-            model.FileList = list;
-            return View(model);
+            var blobbusiness = new BlobBusiness();
+            return View(blobbusiness.GetListOfBlobs("images"));
         }
 
+        [ActionName("Upload")]
+        public ActionResult Upload()
+        {
+            ViewBag.Message = "Upload page.";
+
+            return View();
+        }
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase files)
+        [ActionName("Upload")]
+        public async Task<ActionResult> UploadAsync(FileUploadVm photo)
         {
-            FileUploadVm model = new FileUploadVm
+            if (ModelState.IsValid)
             {
-                FileList = new List<FileUploadVm>()
-            };
-            FileUploadVm file;
-            var dtFiles = GetFileDetails();
-            foreach (var item in dtFiles)
-            {
-                file = new FileUploadVm
+                if (photo.FileUpload != null && photo.FileUpload.ContentLength > 0)
                 {
-                    FileId = item.FileId,
-                    FileName = item.FileName,
-                    FileUrl = item.FileUrl
-                };
-                model.FileList.Add(file);
-            }
-
-            if (files != null)
-            {
-                //var Extension = Path.GetExtension(files.FileName);
-                //var fileName = "my-file-" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + Extension;
-                string defaultPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "UploadedFiles");
-                string path = Path.Combine(defaultPath, files.FileName);
-                model.FileUrl = Url.Content(Path.Combine("~/UploadedFiles/", files.FileName));
-                model.FileName = files.FileName;
-
-                if (SaveFile(model))
-                {
-                    files.SaveAs(path);
-                    TempData["AlertMessage"] = "Uploaded Successfully !!";
-                    return RedirectToAction("Index", "FileUploadVms");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Error In Add File. Please Try Again !!!");
+                    var blobbusiness = new BlobBusiness();
+                    await blobbusiness.UploadPhotoAsync("images", photo.FileUpload);
                 }
             }
-            else
-            {
-                ModelState.AddModelError("", "Please Choose Correct File Type !!");
-                return View(model);
-            }
-            return RedirectToAction("Index", "FileUploadVms");
-        }
 
-        private List<FileUploadVm> GetFileDetails()
-        {
-            //DataTable dtData = new DataTable();
-            //SqlConnection con = new SqlConnection(conString);
-            //con.Open();
-            //SqlCommand command = new SqlCommand("Select * From tblFileDetails", con);
-            //SqlDataAdapter da = new SqlDataAdapter(command);
-            //da.Fill(dtData);
-            //con.Close();
-            //return dtData;
-            var response = new List<FileUploadVm>();
-
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "UploadedFiles");
-
-            var test = Directory.GetFiles(path);
-            foreach (var entry in test)
-            {
-                var file = new FileUploadVm
-                {
-
-                    FileId = entry,
-                    FileName = Path.GetFileName(entry),
-                    FileUrl = entry
-
-                };
-                guid.ToString();
-                response.Add(file);
-            }
-
-            return response;
-        }
-
-        private bool SaveFile(FileUploadVm model)
-        {
-            //string strQry = "INSERT INTO tblFileDetails (FileName,FileUrl) VALUES('" +
-            //    model.FileName + "','" + model.FileUrl + "')";
-            //SqlConnection con = new SqlConnection(conString);
-            //con.Open();
-            //SqlCommand command = new SqlCommand(strQry, con);
-            //int numResult = command.ExecuteNonQuery();
-            //con.Close();
-            if (model != null)
-
-            {
-                model.FileList.Add(model);
-                guid.ToString();
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        //public string filePath = @"E:\work\campus work\3rd year 2020\Project work\sem 2\project code\DGSrepo1\DGSappSem2\DGSappSem2\DGSappSem2\Files\DownloadFiles";
-        public ActionResult DownloadFile(string filePath)
-        {
-            string fullName = Server.MapPath("~" + filePath);
-
-            byte[] fileBytes = GetFile(fullName);
-            return File(
-                fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, filePath);
-
+            return RedirectToAction("Index");
 
         }
 
-        byte[] GetFile(string s)
-        {
-            System.IO.FileStream fs = System.IO.File.OpenRead(s);
-            byte[] data = new byte[fs.Length];
-            int br = fs.Read(data, 0, data.Length);
-            if (br != fs.Length)
-                throw new System.IO.IOException(s);
-            return data;
-        }
+        //    private ApplicationDbContext db = new ApplicationDbContext();
 
-
-        //public async Task<ActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
+        //    // GET: FileUploadVms
+        //    public ActionResult Index()
         //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //        return View(db.FileUploadVms.ToList());
         //    }
-        //    FileUpload assessment = await db.FileUpload.FindAsync(id);
-        //    if (assessment == null)
+
+        //    // GET: FileUploadVms/Details/5
+        //    public ActionResult Details(string id)
         //    {
-        //        return HttpNotFound();
+        //        if (id == null)
+        //        {
+        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //        }
+        //        FileUploadVm fileUploadVm = db.FileUploadVms.Find(id);
+        //        if (fileUploadVm == null)
+        //        {
+        //            return HttpNotFound();
+        //        }
+        //        return View(fileUploadVm);
         //    }
-        //    return View(assessment);
-        //}
 
-        //// POST: Assessments/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(int id)
-        //{
-        //    FileUpload assessment = await db.FileUpload.FindAsync(id);
-        //    db.Assessments.Remove(assessment);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
+        //    // GET: FileUploadVms/Create
+        //    public ActionResult Create()
+        //    {
+        //        return View(new FileUploadVm());
+        //    }
 
+        //    // POST: FileUploadVms/Create
+        //    // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        //    // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //    [HttpPost]
+        //    [ValidateAntiForgeryToken]
+        //    public ActionResult Create([Bind(Include = "FileId,FileName,FileUrl")] FileUploadVm fileUploadVm)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            db.FileUploadVms.Add(fileUploadVm);
+        //            db.SaveChanges();
+        //            return RedirectToAction("Index");
+        //        }
+
+        //        return View(fileUploadVm);
+        //    }
+
+        //    // GET: FileUploadVms/Edit/5
+        //    public ActionResult Edit(string id)
+        //    {
+        //        if (id == null)
+        //        {
+        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //        }
+        //        FileUploadVm fileUploadVm = db.FileUploadVms.Find(id);
+        //        if (fileUploadVm == null)
+        //        {
+        //            return HttpNotFound();
+        //        }
+        //        return View(fileUploadVm);
+        //    }
+
+        //    // POST: FileUploadVms/Edit/5
+        //    // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        //    // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //    [HttpPost]
+        //    [ValidateAntiForgeryToken]
+        //    public ActionResult Edit([Bind(Include = "FileId,FileName,FileUrl")] FileUploadVm fileUploadVm)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            db.Entry(fileUploadVm).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //            return RedirectToAction("Index");
+        //        }
+        //        return View(fileUploadVm);
+        //    }
+
+        //    // GET: FileUploadVms/Delete/5
+        //    public ActionResult Delete(string id)
+        //    {
+        //        if (id == null)
+        //        {
+        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //        }
+        //        FileUploadVm fileUploadVm = db.FileUploadVms.Find(id);
+        //        if (fileUploadVm == null)
+        //        {
+        //            return HttpNotFound();
+        //        }
+        //        return View(fileUploadVm);
+        //    }
+
+        //    // POST: FileUploadVms/Delete/5
+        //    [HttpPost, ActionName("Delete")]
+        //    [ValidateAntiForgeryToken]
+        //    public ActionResult DeleteConfirmed(string id)
+        //    {
+        //        FileUploadVm fileUploadVm = db.FileUploadVms.Find(id);
+        //        db.FileUploadVms.Remove(fileUploadVm);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    protected override void Dispose(bool disposing)
+        //    {
+        //        if (disposing)
+        //        {
+        //            db.Dispose();
+        //        }
+        //        base.Dispose(disposing);
+        //    }
     }
 }

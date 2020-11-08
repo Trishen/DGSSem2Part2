@@ -1,53 +1,35 @@
-﻿@model DGSappSem2.Models.FileUpload.FileUploadVm
+﻿@model IEnumerable<DGSappSem2.Models.FileUpload.BlobViewModel>
 
 @{
-    ViewBag.Title = "File Upload & Download";
+    ViewBag.Title = "Index";
 }
 
-@using (Html.BeginForm("Index", "FileUploadVms", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    <div class="row">
-        <div class="col-md-10">
-            <h2>File Upload</h2>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<h2>Index</h2>
 
-            <label class="col-md-2 control-label">Upload Image</label>
-            <input type="file" id="files" name="files" class="form-control" required="required"><br />
+<p>
+    @Html.ActionLink("Upload New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.URI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
 
-            <input type="submit" value="Upload" class="btn btn-default" />
-        </div>
-    </div>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><a href="@item.URI" target="_blank">@item.Name</a><br /></td>
+        </tr>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.URI }) |
+            @Html.ActionLink("Details", "Details", new { id = item.URI }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.URI })*@
+        </td>
+    }
 
-<div class="row">
-    <div class="col-md-10">
-        <h2>Uploaded File Details</h2>
-        <div class="form-group">
-            <div>
-                @{
-                    var grid = new WebGrid(source: Model.FileList, canPage: true, rowsPerPage: 15);
-                    @grid.GetHtml(tableStyle: "table table-striped table-bordered table-hover", headerStyle: "webgrid-header",
-                        alternatingRowStyle: "webgrid-alternating-row", selectedRowStyle: "webgrid-selected-row",
-                        footerStyle: "webgrid-footer", rowStyle: "webgrid-row-style", mode: WebGridPagerModes.All,
-                        firstText: "<< First", previousText: "< Prev", nextText: "Next >", lastText: "Last >>",
-                        htmlAttributes: new { id = "DataTable" },
-                        columns: grid.Columns(
-                            //grid.Column("FileId", header: "FILE ID", canSort: false),
-                            grid.Column("FileName", header: "FILE NAME", canSort: false),
-                            grid.Column("FileUrl", header: "FILE PATH", canSort: false)@*,
-                            grid.Column(header: "DOWNLOAD", format:
-                                                    @<text>
-                                                        <a href="~/DownloadFile?filePath=@item.FileUrl"><img src="~/Images/download.png" style="width: 15px; height: 15px" title="Download" /></a>
-                                                    </text>)*@
-          ));
-                }
-            </div>
-        </div>
-    </div>
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-} 
+</table>
