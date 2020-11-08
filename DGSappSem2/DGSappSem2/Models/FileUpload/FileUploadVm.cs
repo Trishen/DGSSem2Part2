@@ -9,7 +9,9 @@ namespace DGSappSem2.Models.FileUpload
 {
     public class FileUploadVm
     {
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please select file.")]
-        public HttpPostedFileBase FileUpload { get; set; }
+        [Key]
+        public int Id { get; set; }
+        //[System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please select file.")]
+        //public HttpPostedFileBase FileUpload { get; set; }
     }
 }

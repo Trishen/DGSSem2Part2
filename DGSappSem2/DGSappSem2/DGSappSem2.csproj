@@ -200,9 +200,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BlobBusiness.cs" />
+    <Compile Include="Business\Logic.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AssessmentsController.cs" />
+    <Compile Include="Controllers\BookCategoriesController.cs" />
     <Compile Include="Controllers\BookEventsController.cs" />
+    <Compile Include="Controllers\BookReservationsController.cs" />
+    <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\FileUploadVmsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -253,6 +257,9 @@
     <Compile Include="Models\Events\Venue.cs" />
     <Compile Include="Models\FileUpload\BlobViewModel.cs" />
     <Compile Include="Models\FileUpload\FileUploadVm.cs" />
+    <Compile Include="Models\Library\Book.cs" />
+    <Compile Include="Models\Library\BookCategory.cs" />
+    <Compile Include="Models\Library\BookReservation.cs" />
     <Compile Include="Models\Reports\Report.cs" />
     <Compile Include="Models\Reports\SubjectReport.cs" />
     <Compile Include="Models\Staffs\StaffAttendance.cs" />
@@ -363,6 +370,21 @@
     <Content Include="Views\Venues\Edit.cshtml" />
     <Content Include="Views\Venues\Index.cshtml" />
     <Content Include="Views\Staffs\Print.cshtml" />
+    <Content Include="Views\Books\Create.cshtml" />
+    <Content Include="Views\Books\Delete.cshtml" />
+    <Content Include="Views\Books\Details.cshtml" />
+    <Content Include="Views\Books\Edit.cshtml" />
+    <Content Include="Views\Books\Index.cshtml" />
+    <Content Include="Views\BookCategories\Create.cshtml" />
+    <Content Include="Views\BookCategories\Delete.cshtml" />
+    <Content Include="Views\BookCategories\Details.cshtml" />
+    <Content Include="Views\BookCategories\Edit.cshtml" />
+    <Content Include="Views\BookCategories\Index.cshtml" />
+    <Content Include="Views\BookReservations\Create.cshtml" />
+    <Content Include="Views\BookReservations\Delete.cshtml" />
+    <Content Include="Views\BookReservations\Details.cshtml" />
+    <Content Include="Views\BookReservations\Edit.cshtml" />
+    <Content Include="Views\BookReservations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

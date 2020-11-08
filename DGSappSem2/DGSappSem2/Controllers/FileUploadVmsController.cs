@@ -33,11 +33,11 @@ namespace DGSappSem2.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (photo.FileUpload != null && photo.FileUpload.ContentLength > 0)
-                {
-                    var blobbusiness = new BlobBusiness();
-                    await blobbusiness.UploadPhotoAsync("images", photo.FileUpload);
-                }
+                //if (photo.FileUpload != null && photo.FileUpload.ContentLength > 0)
+                //{
+                //    var blobbusiness = new BlobBusiness();
+                //    await blobbusiness.UploadPhotoAsync("images", photo.FileUpload);
+                //}
             }
 
             return RedirectToAction("Index");
