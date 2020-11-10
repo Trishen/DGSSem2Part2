@@ -255,6 +255,7 @@
     <Compile Include="Models\Events\EmailService.cs" />
     <Compile Include="Models\Events\Event.cs" />
     <Compile Include="Models\Events\Venue.cs" />
+    <Compile Include="Models\Extramural\Mural.cs" />
     <Compile Include="Models\FileUpload\BlobViewModel.cs" />
     <Compile Include="Models\FileUpload\FileUploadVm.cs" />
     <Compile Include="Models\Library\Book.cs" />

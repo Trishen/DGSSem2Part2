@@ -8,6 +8,48 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
+<style>
+    .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+</style>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -17,27 +59,52 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("DGS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                @Html.ActionLink("DGS Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
-                    @*<li>@Html.ActionLink("Staff Accounts", "Index", "Staffs")</li>
+                <button onclick="staff()" class="dropbtn">Staff Portal</button>
+                <div id="staffPortaldropdown" class="dropdown-content">
+                    <li>@Html.ActionLink("Staff Accounts", "Index", "Staffs")</li>
                     <li>@Html.ActionLink("Staff Attendance", "Index", "StaffAttendances")</li>
-                    <li>@Html.ActionLink("Assessments", "Index", "Assessments")</li>
-                    <li>@Html.ActionLink("Assement Uploads", "Index", "FileUploadVms")</li>
-                    <li>@Html.ActionLink("Events", "Index", "Events")</li>
-                    <li>@Html.ActionLink("Book Events", "Index", "BookEvents")</li>*@
+
+                </div>
+
+                <button onclick="student()" class="dropbtn">Student Portal</button>
+                <div id="studentPortaldropdown" class="dropdown-content">
                     <li>@Html.ActionLink("Students", "Index", "Students")</li>
+                </div>
+
+                <button onclick="assessment()" class="dropbtn">Assessment Portal</button>
+                <div id="assessmentPortaldropdown" class="dropdown-content">
+                    <li>@Html.ActionLink("Assement Uploads", "Index", "FileUploadVms")</li>
+                    <li>@Html.ActionLink("Assessments", "Index", "Assessments")</li>
+                </div>
+
+                <button onclick="events()" class="dropbtn">Events Portal</button>
+                <div id="eventsPortaldropdown" class="dropdown-content">
+                    <li>@Html.ActionLink("Events", "Index", "Events")</li>
+                    <li>@Html.ActionLink("Book Events", "Index", "BookEvents")</li>
                     <li>@Html.ActionLink("Venues", "Index", "Venues")</li>
+                </div>
+
+                <button onclick="library()" class="dropbtn">Library Portal</button>
+                <div id="libraryPortaldropdown" class="dropdown-content">
                     <li>@Html.ActionLink("Books", "Index", "Books")</li>
                     <li>@Html.ActionLink("Book Categories", "Index", "BookCategories")</li>
                     <li>@Html.ActionLink("Book Reservations", "Index", "BookReservations")</li>
+                </div>
 
+                <button onclick="extramural()" class="dropbtn">Extramural Portal</button>
+                <div id="extramuralPortaldropdown" class="dropdown-content">
+                </div>
+
+                <button onclick="details()" class="dropbtn">Details</button>
+                <div id="detailsPortaldropdown" class="dropdown-content">
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+                </div>
+
+            </div>
+            <div class="navbar-collapse collapse">
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -53,5 +120,51 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function staff() {
+            document.getElementById("staffPortaldropdown").classList.toggle("show");
+        }
+
+        function student() {
+            document.getElementById("studentPortaldropdown").classList.toggle("show");
+        }
+
+        function assessment() {
+            document.getElementById("assessmentPortaldropdown").classList.toggle("show");
+        }
+
+        function events() {
+            document.getElementById("eventsPortaldropdown").classList.toggle("show");
+        }
+
+        function library() {
+            document.getElementById("libraryPortaldropdown").classList.toggle("show");
+        }
+
+        function extramural() {
+            document.getElementById("extramuralPortaldropdown").classList.toggle("show");
+        }
+
+        function details() {
+            document.getElementById("detailsPortaldropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
