@@ -1,4 +1,5 @@
 ﻿using DGSappSem2.Models.Classes;
+using DGSappSem2.Models.school;
 using DGSappSem2.Models.Subject;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,9 @@ namespace DGSappSem2.Models.Staffs
         [Key]
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int StaffId { get; set; }
+
+        [Required(ErrorMessage = "Select title")]
+        public string Title { get; set; }
 
         [Required(ErrorMessage = "Enter first name")]
         [Display(Name = "First Name")]
@@ -39,29 +43,13 @@ namespace DGSappSem2.Models.Staffs
         [Display(Name = "Phone Number")]
         public string PhoneNo { get; set; }
 
-        [Required(ErrorMessage = "Enter Assigned class")]
-        [Display(Name = "Grade")]
-        public string Grade { get; set; }
-
-        [Required(ErrorMessage = "Enter Assigned Subject")]
-        [Display(Name = "Assigned Subject")]
-        public string Subject { get; set; }
-
         [Required(ErrorMessage = "Enter staff's home address")]
         public string Address { get; set; }
 
-        [Required(ErrorMessage = "Enter staff's position")]
+        [Required(ErrorMessage = "Enter postal code")]
+        public string PostalCode { get; set; }
+
+        [Required(ErrorMessage = "Select staff position")]
         public string Position { get; set; }
-
-        //public int SubjectID { get; set; }
-        //public virtual Subject Subjects { get; set; }
-
-        //[Required(ErrorMessage = "Enter staff's salary")]
-        //public string Salary { get; set; }
-
-        public ICollection<Course_Material> Course_Materials { get; set; }
-
-        public ICollection<_Class> Classes { get; set; }
-
     }
 }

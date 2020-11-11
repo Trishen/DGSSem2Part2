@@ -1,4 +1,5 @@
-﻿using DGSappSem2.Models.Staffs;
+﻿using DGSappSem2.Models.school;
+using DGSappSem2.Models.Staffs;
 using DGSappSem2.Models.Subject;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace DGSappSem2.Models.Classes
 
         public Staff Staffs { get; set; }
         public _Subject Subjects { get; set; }
+       
+        public ICollection<Grades>grades{ get; set; }
 
     }
 }
