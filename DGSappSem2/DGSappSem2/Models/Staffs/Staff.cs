@@ -63,5 +63,7 @@ namespace DGSappSem2.Models.Staffs
 
         public ICollection<_Class> Classes { get; set; }
 
+        public ICollection<StaffTimetable> staffTimetables { get; set; }
+
     }
 }
