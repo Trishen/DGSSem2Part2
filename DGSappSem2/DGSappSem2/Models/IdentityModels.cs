@@ -51,5 +51,9 @@ namespace DGSappSem2.Models
         public System.Data.Entity.DbSet<DGSappSem2.Models.Library.BookCategory> BookCategories { get; set; }
 
         public System.Data.Entity.DbSet<DGSappSem2.Models.Library.BookReservation> BookReservations { get; set; }
+
+        public System.Data.Entity.DbSet<DGSappSem2.Models.school.Grades> Grades { get; set; }
+
+        public System.Data.Entity.DbSet<DGSappSem2.Models.Classes.Classes> Classes { get; set; }
     }
 }

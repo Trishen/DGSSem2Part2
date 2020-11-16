@@ -63,9 +63,10 @@
 
                 <button onclick="staff()" class="dropbtn">Staff Portal</button>
                 <div id="staffPortaldropdown" class="dropdown-content">
-                    <li>@Html.ActionLink("Accounts", "Index", "Staffs")</li>
-                    <li>@Html.ActionLink("Attendance", "Index", "StaffAttendances")</li>
-
+                    <ul>@Html.ActionLink("Staff", "Index", "Staffs")</ul>
+                    <ul>@Html.ActionLink("Attendance", "Index", "StaffAttendances")</ul>
+                    <ul>@Html.ActionLink("Grades", "Index", "Grades")</ul>
+                    <ul>@Html.ActionLink("Registration Classes", "Index", "Classes")</ul>
                 </div>
 
                 <button onclick="student()" class="dropbtn">Student Portal</button>

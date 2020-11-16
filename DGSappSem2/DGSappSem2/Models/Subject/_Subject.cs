@@ -21,6 +21,6 @@ namespace DGSappSem2.Models.Subject
 
         public virtual ICollection<Course_Material> Course_Materials { get; set; }
         public virtual ICollection<SubjectReport> SubjectReports { get; set; }
-        public virtual ICollection<_Class> Classes { get; set; }
+        public virtual ICollection<Classes.Classes> Classes { get; set; }
     }
 }

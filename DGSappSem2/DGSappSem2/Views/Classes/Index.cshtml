@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DGSappSem2.Models.Classes.Classes>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GradeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxNoOfClasses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxNoOfStudentsInClass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>   
+            @Html.DisplayNameFor(model => model.AssignedTeacher)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxNoOfClasses)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxNoOfStudentsInClass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StaffId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignedTeacher)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ClassId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ClassId })
+                @Html.ActionLink("View Class List", "ViewClassList", new { id = item.ClassId })
+            </td>
+        </tr>
+    }
+
+</table>

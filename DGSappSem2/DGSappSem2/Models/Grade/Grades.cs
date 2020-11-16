@@ -17,13 +17,19 @@ namespace DGSappSem2.Models.school
 
         [Required(ErrorMessage = "enter Grade ")]
         [Display(Name = "Grade")]
-        public string Grade { get; set; }
+        public string GradeName { get; set; }
 
-        //[Required(ErrorMessage = "enter Grade ")]
-        //[Display(Name = "Class")]
-        //public string gradeClass { get; set; }
+        [Display(Name = "Max No. Of Students In Grade")]
+        [Required]
+        [Range(1, 500)]
+        public int MaxNoOfStudentsInGrade { get; set; }
 
-        public ICollection<_Class> Classes { get; set; }
+        [Display(Name = "Max No. Of Classes")]
+        [Required]
+        [Range(1, 5)]
+        public int MaxNoOfClasses { get; set; }
 
+        [Display(Name = "No. Of Students")]
+        public int NoOfStudents { get; set; }
     }
 }

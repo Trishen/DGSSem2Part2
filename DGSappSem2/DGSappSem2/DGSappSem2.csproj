@@ -207,14 +207,19 @@
     <Compile Include="Controllers\BookEventsController.cs" />
     <Compile Include="Controllers\BookReservationsController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\ClassesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\FileUploadVmsController.cs" />
+    <Compile Include="Controllers\GradesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StaffAttendancesController.cs" />
     <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\VenuesController.cs" />
+    <Compile Include="Enums\Category.cs" />
+    <Compile Include="Enums\Status.cs" />
+    <Compile Include="Enums\SubjectName.cs" />
     <Compile Include="Enums\Title.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -250,8 +255,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Assements\Assessment.cs" />
-    <Compile Include="Models\Classes\ClassList.cs" />
-    <Compile Include="Models\Classes\_Class.cs" />
+    <Compile Include="Models\Classes\Classes.cs" />
     <Compile Include="Models\Events\BookEvent.cs" />
     <Compile Include="Models\Events\EmailService.cs" />
     <Compile Include="Models\Events\Event.cs" />
@@ -264,7 +268,7 @@
     <Compile Include="Models\Library\BookReservation.cs" />
     <Compile Include="Models\Reports\Report.cs" />
     <Compile Include="Models\Reports\SubjectReport.cs" />
-    <Compile Include="Models\school\Grades.cs" />
+    <Compile Include="Models\Grade\Grades.cs" />
     <Compile Include="Models\Staffs\StaffAttendance.cs" />
     <Compile Include="Models\Students\Student.cs" />
     <Compile Include="Models\Subject\Course_Material.cs" />
@@ -389,6 +393,16 @@
     <Content Include="Views\BookReservations\Details.cshtml" />
     <Content Include="Views\BookReservations\Edit.cshtml" />
     <Content Include="Views\BookReservations\Index.cshtml" />
+    <Content Include="Views\Grades\Create.cshtml" />
+    <Content Include="Views\Grades\Delete.cshtml" />
+    <Content Include="Views\Grades\Details.cshtml" />
+    <Content Include="Views\Grades\Edit.cshtml" />
+    <Content Include="Views\Grades\Index.cshtml" />
+    <Content Include="Views\Classes\Create.cshtml" />
+    <Content Include="Views\Classes\Delete.cshtml" />
+    <Content Include="Views\Classes\Details.cshtml" />
+    <Content Include="Views\Classes\Edit.cshtml" />
+    <Content Include="Views\Classes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
