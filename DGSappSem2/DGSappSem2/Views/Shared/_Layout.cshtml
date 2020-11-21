@@ -61,18 +61,6 @@
                 </button>
                 @Html.ActionLink("DGS Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
-                    @*<li>@Html.ActionLink("Staff Accounts", "Index", "Staffs")</li>
-        <li>@Html.ActionLink("Staff Attendance", "Index", "StaffAttendances")</li>
-        <li>@Html.ActionLink("Assessments", "Index", "Assessments")</li>
-        <li>@Html.ActionLink("Assement Uploads", "Index", "FileUploadVms")</li>
-        <li>@Html.ActionLink("Events", "Index", "Events")</li>
-        <li>@Html.ActionLink("Book Events", "Index", "BookEvents")</li>*@
-                    <li>@Html.ActionLink("Staff Accounts", "Index", "Staffs")</li>
-                    <li>@Html.ActionLink("Staff Timetable", "Index", "StaffTimetables")</li>
-                    <li>@Html.ActionLink("Student Timetable", "Index", "StudentTimetables")</li>
-                    <li>@Html.ActionLink("Students", "Index", "Students")</li>
-                   @* <li>@Html.ActionLink("Venues", "Index", "Venues")</li>
-              
                 <button onclick="staff()" class="dropbtn">Staff Portal</button>
                 <div id="staffPortaldropdown" class="dropdown-content">
                     <ul>@Html.ActionLink("Staff", "Index", "Staffs")</ul>
@@ -113,9 +101,6 @@
                 <button onclick="details()" class="dropbtn">Details</button>
                 <div id="detailsPortaldropdown" class="dropdown-content">
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                  
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                </ul>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </div>
 
