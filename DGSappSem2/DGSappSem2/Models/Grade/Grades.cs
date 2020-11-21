@@ -1,4 +1,5 @@
 ﻿using DGSappSem2.Models.Classes;
+using DGSappSem2.Validators;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +16,9 @@ namespace DGSappSem2.Models.school
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int GradeId { get; set; }
 
-        [Required(ErrorMessage = "enter Grade ")]
+        [Required(ErrorMessage = "Enter Grade ")]
         [Display(Name = "Grade")]
+        [UniqueGradeNameValidator]
         public string GradeName { get; set; }
 
         [Display(Name = "Max No. Of Students In Grade")]

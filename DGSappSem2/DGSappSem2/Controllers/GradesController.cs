@@ -18,7 +18,13 @@ namespace DGSappSem2.Controllers
         // GET: Grades
         public ActionResult Index()
         {
-            return View(db.Grades.ToList());
+            var grades = db.Grades.ToList();
+
+            foreach (var grade in grades)
+            {
+                grade.NoOfStudents = db.Students.Count(x => x.StudentGrade == grade.GradeName);
+            }
+            return View(grades);
         }
 
         // GET: Grades/Details/5
@@ -49,6 +55,11 @@ namespace DGSappSem2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "GradeId,GradeName,MaxNoOfStudentsInGrade,MaxNoOfClasses")] Grades grades)
         {
+            //if (db.Grades.Any(x => x.GradeName.Equals(grades.GradeName)))
+            //{
+            //    TempData["Message"] = "Grade Name already exists. System does not support grades of the same name";
+            //}
+
             if (ModelState.IsValid)
             {
                 db.Grades.Add(grades);

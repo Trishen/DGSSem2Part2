@@ -41,8 +41,12 @@
         @Html.DisplayFor(modelItem => item.NoOfStudents)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.GradeId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.GradeId })
+        @Html.ActionLink("Edit", "Edit", new { id = item.GradeId })
+
+        @if (item.NoOfStudents == 0)
+        {
+            @Html.ActionLink("| Delete", "Delete", new { id = item.GradeId })
+        }
     </td>
 </tr>
 }

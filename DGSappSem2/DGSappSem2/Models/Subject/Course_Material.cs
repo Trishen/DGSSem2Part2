@@ -23,7 +23,7 @@ namespace DGSappSem2.Models.Subject
         public string title { get; set; }
 
         public int SubjectID { get; set; }
-        public _Subject Subjects { get; set; }
+        public Subject Subjects { get; set; }
 
         public int StaffId { get; set; }
         public Staff Staffs { get; set; }

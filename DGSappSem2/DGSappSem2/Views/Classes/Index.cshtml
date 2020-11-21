@@ -27,9 +27,12 @@
             @Html.DisplayNameFor(model => model.MaxNoOfStudentsInClass)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.NoOfStudents)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.StaffId)
         </th>
-        <th>   
+        <th>
             @Html.DisplayNameFor(model => model.AssignedTeacher)
         </th>
         <th></th>
@@ -37,34 +40,42 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClassId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClassName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GradeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxNoOfClasses)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxNoOfStudentsInClass)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StaffId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssignedTeacher)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ClassId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ClassId })
-                @Html.ActionLink("View Class List", "ViewClassList", new { id = item.ClassId })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ClassId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ClassName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GradeName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaxNoOfClasses)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaxNoOfStudentsInClass)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NoOfStudents)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StaffId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AssignedTeacher)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ClassId }) |
+
+        @if (item.NoOfStudents == 0)
+        {
+            @Html.ActionLink("| Delete |", "Delete", new { id = item.GradeId })
+        } 
+
+        @Html.ActionLink("View Class List", "ViewClassList", new { id = item.ClassId })
+    </td>
+</tr>
     }
 
 </table>

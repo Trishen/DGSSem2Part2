@@ -54,7 +54,6 @@ namespace DGSappSem2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StID,StudentName,StudentSurname,StudentGender,StudentAddress,StudentTown,StudentContact,StudentGrade,StudentEmail,StudentBirthCertURL,StudentReportURL,StudentProofResURL,StudentPermitURL,StudentAllowReg")] Student student)
         {
-
             student.AssignedTeacher = db.Classes.Where(x => x.GradeName == student.StudentGrade).Select(x => x.AssignedTeacher).FirstOrDefault();
             student.ClassName = db.Classes.Where(x => x.GradeName == student.StudentGrade).Select(x => x.ClassName).FirstOrDefault();
 

@@ -16,7 +16,7 @@ namespace DGSappSem2.Models.Reports
         public int SubjectReportID { get; set; }
 
         public int SubjectID { get; set; }
-        public _Subject Subjects { get; set; }
+        public Subject.Subject Subjects { get; set; }
 
         public int AssesssmentId { get; set; }
         public Assessment Assessments { get; set; }

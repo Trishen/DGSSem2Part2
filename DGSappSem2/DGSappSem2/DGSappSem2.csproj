@@ -275,10 +275,12 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Staffs\Staff.cs" />
-    <Compile Include="Models\Subject\_Subject.cs" />
+    <Compile Include="Models\Subject\Subject.cs" />
     <Compile Include="Enums\Position.cs" />
+    <Compile Include="Models\Subject\SubjectAssignment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Validators\UniqueGradeNameValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

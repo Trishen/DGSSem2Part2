@@ -44,9 +44,10 @@ namespace DGSappSem2.Controllers
         public ActionResult Create()
         {
             Dictionary<int, string> teacherCollection = GetTeacherNameComboCollection();
+            Dictionary<int, string> gradeCollection = GetGradeNameComboCollection();
             var classes = new Classes
             {
-                GradeNameCollection = db.Grades.Select(x => x.GradeName).ToList(),
+                GradeNameCollection = gradeCollection.Values.ToList(),
                 TeacherNameCollection = teacherCollection.Values.ToList()
             };
 
@@ -74,17 +75,22 @@ namespace DGSappSem2.Controllers
 
         private Dictionary<int, string> GetGradeNameComboCollection()
         {
-            var teacherCollection = new Dictionary<int, string>();
+            var gradeCollection = new Dictionary<int, string>();
 
             var collection = db.Grades.ToList();
 
             foreach (var entry in collection)
             {
-                teacherCollection.Add(entry.GradeId, entry.GradeName);
+                var classesCount = db.Classes.ToList().Where(x=> x.GradeName.Equals(entry.GradeName)).Count();
+
+                if (!classesCount.Equals(entry.MaxNoOfClasses))
+                {
+                    gradeCollection.Add(entry.GradeId, entry.GradeName);
+                }
             }
 
 
-            return teacherCollection;
+            return gradeCollection;
         }
 
 
