@@ -85,7 +85,7 @@ namespace DGSappSem2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StaffId,Name,Surname,Gender,DateOfBirth,Email,PhoneNo,Grade,Subject,Address,Position")] Staff staff)
+        public ActionResult Create([Bind(Include = "StaffId,Title,Name,Surname,Gender,DateOfBirth,Email,PhoneNo,Address,PostalCode,Position")] Staff staff)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +117,7 @@ namespace DGSappSem2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StaffId,Name,Surname,Gender,DateOfBirth,Email,PhoneNo,Grade,Subject,Address,Position")] Staff staff)
+        public ActionResult Edit([Bind(Include = "StaffId,Title,Name,Surname,Gender,DateOfBirth,Email,PhoneNo,Address,PostalCode,Position")] Staff staff)
         {
             if (ModelState.IsValid)
             {

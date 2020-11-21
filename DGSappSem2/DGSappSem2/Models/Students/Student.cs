@@ -1,6 +1,8 @@
-﻿using System;
+﻿using DGSappSem2.Models.Staffs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -65,5 +67,21 @@ namespace DGSappSem2.Models.Students
 
         [Display(Name = "Allow registration")]
         public bool StudentAllowReg { get; set; }
+
+        [ForeignKey("StaffId")]
+        public virtual Staff Staff { get; set; }
+
+        public int? StaffId { get; set; }
+        [Display(Name = "Assigned Teacher")]
+        public string AssignedTeacher { get; set; }
+
+        [ForeignKey("ClassId")]
+        public virtual Models.Classes.Classes Class { get; set; }
+
+        public int? ClassId { get; set; }
+        [Display(Name = "Registration Class")]
+        public string ClassName { get; set; }
+
+        public IEnumerable<string> GradeNameCollection { get; set; }
     }
 }

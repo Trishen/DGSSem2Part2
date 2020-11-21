@@ -7,14 +7,17 @@
 <h2>Staff Portal</h2>
 
 @*<p>
-    @Html.ActionLink("View Staff Attendance", "Index", "StaffAttendances", new { @class="btn btn-default"})
-</p>*@
+        @Html.ActionLink("View Staff Attendance", "Index", "StaffAttendances", new { @class="btn btn-default"})
+    </p>*@
 
 <p>
     @Html.ActionLink("Add new staff member", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -34,13 +37,10 @@
             @Html.DisplayNameFor(model => model.PhoneNo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Grade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Subject)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalCode)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Position)
@@ -51,6 +51,9 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -70,21 +73,18 @@
                 @Html.DisplayFor(modelItem => item.PhoneNo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Grade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Subject)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostalCode)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Position)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.StaffId }) |
-                @Html.ActionLink("Create QR Code", "Details", new { id = item.StaffId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.StaffId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.StaffId }) | 
+                @Html.ActionLink("Delete", "Delete", new { id = item.StaffId }) | 
+                @Html.ActionLink("QR Code", "Details", new { id = item.StaffId })
             </td>
         </tr>
     }

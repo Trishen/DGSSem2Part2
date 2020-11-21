@@ -8124,16 +8124,16 @@ jQuery.fn.extend( {
 		}
 
 		return this.each( function() {
-			var className, i, self, classNames;
+			var className, i, self, Classes;
 
 			if ( isValidValue ) {
 
 				// Toggle individual class names
 				i = 0;
 				self = jQuery( this );
-				classNames = classesToArray( value );
+				Classes = classesToArray( value );
 
-				while ( ( className = classNames[ i++ ] ) ) {
+				while ( ( className = Classes[ i++ ] ) ) {
 
 					// Check each className given, space separated list
 					if ( self.hasClass( className ) ) {

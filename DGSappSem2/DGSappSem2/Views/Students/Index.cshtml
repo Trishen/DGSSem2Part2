@@ -50,56 +50,69 @@
         <th>
             @Html.DisplayNameFor(model => model.StudentAllowReg)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignedTeacher)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentSurname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentGender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentTown)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentContact)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentGrade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentBirthCertURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentReportURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentProofResURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentPermitURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentAllowReg)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentSurname)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentGender)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentAddress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentTown)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentContact)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentGrade)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentEmail)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentBirthCertURL)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentReportURL)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentProofResURL)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentPermitURL)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentAllowReg)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ClassName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AssignedTeacher)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.StID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.StID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.StID })
+        @Html.ActionLink("Library", "Library", new { id = item.StID })
+    </td>
+</tr>
 }
 
 </table>
