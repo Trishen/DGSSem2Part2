@@ -49,6 +49,7 @@ namespace DGSappSem2.Models.Staffs
         [Required(ErrorMessage = "Enter postal code")]
         public string PostalCode { get; set; }
 
+        public ICollection<StaffTimetable> staffTimetables { get; set; }
         [Required(ErrorMessage = "Select staff position")]
         public string Position { get; set; }
     }
